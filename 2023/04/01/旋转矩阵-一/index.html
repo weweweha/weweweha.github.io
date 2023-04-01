@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>旋转矩阵(一) | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="旋转矩阵(一)1.定义 ^A_BR&#x3D;\left[\begin{matrix} \widehat{X}_B\cdot\widehat{X}_A&amp;\widehat{Y}_B\cdot\widehat{X}_A&amp;\widehat{Z}_B\cdot\widehat{X}_A\\ \widehat{X}_B\cdot\widehat{Y}_A&amp;\widehat{Y}_B\cdot\widehat{Y}_A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旋转矩阵(一)">
+<meta property="og:url" content="http://example.com/2023/04/01/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="旋转矩阵(一)1.定义 ^A_BR&#x3D;\left[\begin{matrix} \widehat{X}_B\cdot\widehat{X}_A&amp;\widehat{Y}_B\cdot\widehat{X}_A&amp;\widehat{Z}_B\cdot\widehat{X}_A\\ \widehat{X}_B\cdot\widehat{Y}_A&amp;\widehat{Y}_B\cdot\widehat{Y}_A">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-04-01T06:33:10.000Z">
+<meta property="article:modified_time" content="2023-04-01T06:52:57.711Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="旋转矩阵(一)">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/04/01/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '旋转矩阵(一)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-01 14:52:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">旋转矩阵(一)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-04-01T06:33:10.000Z" title="Created 2023-04-01 14:33:10">2023-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-01T06:52:57.711Z" title="Updated 2023-04-01 14:52:57">2023-04-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="旋转矩阵(一)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="旋转矩阵-一"><a href="#旋转矩阵-一" class="headerlink" title="旋转矩阵(一)"></a>旋转矩阵(一)</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><script type="math/tex; mode=display">
+^A_BR=\left[\begin{matrix}
+\widehat{X}_B\cdot\widehat{X}_A&\widehat{Y}_B\cdot\widehat{X}_A&\widehat{Z}_B\cdot\widehat{X}_A\\
+\widehat{X}_B\cdot\widehat{Y}_A&\widehat{Y}_B\cdot\widehat{Y}_A&\widehat{Z}_B\cdot\widehat{Y}_A\\
+\widehat{X}_B\cdot\widehat{Z}_A&\widehat{Y}_B\cdot\widehat{Z}_A&\widehat{Z}_B\cdot\widehat{Z}_A\\
+\end{matrix}\right]</script><p>​                                                                                                    (公式1.1)</p>
+<p>​        上述公式（1.1）中，<script type="math/tex">^A_BR</script>表示坐标B相对与坐标A的旋转矩阵(Rotation Matrix)，其中三列分别表示B坐标的X Y Z向量 分别在 A坐标X Y Z 轴上的投影值。（如 $\widehat{X}_B\cdot\widehat{X}_A$指B坐标系的X方向向量在A坐标系X轴上的投影值）</p>
+<h2 id="2-特性"><a href="#2-特性" class="headerlink" title="2.特性"></a>2.特性</h2><h3 id="2-1-B对A的旋转矩阵等于A对B的旋转矩阵的转置矩阵"><a href="#2-1-B对A的旋转矩阵等于A对B的旋转矩阵的转置矩阵" class="headerlink" title="2.1  B对A的旋转矩阵等于A对B的旋转矩阵的转置矩阵"></a>2.1  B对A的旋转矩阵等于A对B的旋转矩阵的转置矩阵</h3><script type="math/tex; mode=display">
+^A_BR=\left[\begin{matrix}
+\widehat{X}_B\cdot\widehat{X}_A&\widehat{Y}_B\cdot\widehat{X}_A&\widehat{Z}_B\cdot\widehat{X}_A\\
+\widehat{X}_B\cdot\widehat{Y}_A&\widehat{Y}_B\cdot\widehat{Y}_A&\widehat{Z}_B\cdot\widehat{Y}_A\\
+\widehat{X}_B\cdot\widehat{Z}_A&\widehat{Y}_B\cdot\widehat{Z}_A&\widehat{Z}_B\cdot\widehat{Z}_A\\
+\end{matrix}\right]
+=
+\left[\begin{matrix}
+\widehat{X}_A\cdot\widehat{X}_B&\widehat{X}_A\cdot\widehat{Y}_B&\widehat{X}_A\cdot\widehat{Z}_B\\
+\widehat{Y}_A\cdot\widehat{X}_B&\widehat{Y}_A\cdot\widehat{Y}_B&\widehat{Y}_A\cdot\widehat{Z}_B\\
+\widehat{Z}_A\cdot\widehat{X}_B&\widehat{Z}_A\cdot\widehat{Y}_B&\widehat{Z}_A\cdot\widehat{Z}_B\\
+\end{matrix}\right]
+=
+\left[\begin{matrix}
+\widehat{X}_A\cdot\widehat{X}_B&\widehat{Y}_A\cdot\widehat{X}_B&\widehat{Z}_A\cdot\widehat{X}_B\\
+\widehat{X}_A\cdot\widehat{Y}_B&\widehat{Y}_A\cdot\widehat{Y}_B&\widehat{Z}_A\cdot\widehat{Y}_B\\
+\widehat{X}_A\cdot\widehat{Z}_B&\widehat{Y}_A\cdot\widehat{Z}_B&\widehat{Z}_A\cdot\widehat{Z}_B\\
+\end{matrix}\right]^T
+=^B_AR^T</script><h3 id="2-2-一个旋转矩阵的转置矩阵与其反矩阵相同"><a href="#2-2-一个旋转矩阵的转置矩阵与其反矩阵相同" class="headerlink" title="2.2 一个旋转矩阵的转置矩阵与其反矩阵相同"></a>2.2 一个旋转矩阵的转置矩阵与其反矩阵相同</h3><h4 id="2-2-1结论"><a href="#2-2-1结论" class="headerlink" title="2.2.1结论"></a>2.2.1结论</h4><script type="math/tex; mode=display">
+^A_BR^T=^A_BR^{-1}</script><h4 id="2-2-2论证"><a href="#2-2-2论证" class="headerlink" title="2.2.2论证"></a>2.2.2论证</h4><script type="math/tex; mode=display">
+\left[
+\begin{matrix}
+\widehat{X}_B\cdot\widehat{X}_A&\widehat{Y}_B\cdot\widehat{X}_A&\widehat{Z}_B\cdot\widehat{X}_A
+\end{matrix}
+\right]
+\,
+\left[
+\begin{matrix}
+\widehat{X}_A\cdot\widehat{X}_B\\
+\widehat{X}_A\cdot\widehat{Y}_B\\
+\widehat{X}_A\cdot\widehat{Z}_B\\
+\end{matrix}
+\right]
+\,
+=1
+\\
+(这两个单位向量方向相同，积为1)
+\\
+\left[
+\begin{matrix}
+\widehat{X}_B\cdot\widehat{X}_A&\widehat{Y}_B\cdot\widehat{X}_A&\widehat{Z}_B\cdot\widehat{X}_A
+\end{matrix}
+\right]
+\,
+\left[
+\begin{matrix}
+\widehat{Y}_A\cdot\widehat{X}_B\\
+\widehat{Y}_A\cdot\widehat{Y}_B\\
+\widehat{Y}_A\cdot\widehat{Z}_B\\
+\end{matrix}
+\right]
+\,
+=0
+\\
+(这两个单位向量夹角为90°，积为0)</script><script type="math/tex; mode=display">
+^A_BR\,^A_BR^T=\left[\begin{matrix}
+\widehat{X}_B\cdot\widehat{X}_A&\widehat{Y}_B\cdot\widehat{X}_A&\widehat{Z}_B\cdot\widehat{X}_A\\
+\widehat{X}_B\cdot\widehat{Y}_A&\widehat{Y}_B\cdot\widehat{Y}_A&\widehat{Z}_B\cdot\widehat{Y}_A\\
+\widehat{X}_B\cdot\widehat{Z}_A&\widehat{Y}_B\cdot\widehat{Z}_A&\widehat{Z}_B\cdot\widehat{Z}_A\\
+\end{matrix}\right]
+\,
+\left[\begin{matrix}
+\widehat{X}_A\cdot\widehat{X}_B&\widehat{Y}_A\cdot\widehat{X}_B&\widehat{Z}_A\cdot\widehat{X}_B\\
+\widehat{X}_A\cdot\widehat{Y}_B&\widehat{Y}_A\cdot\widehat{Y}_B&\widehat{Z}_A\cdot\widehat{Y}_B\\
+\widehat{X}_A\cdot\widehat{Z}_B&\widehat{Y}_A\cdot\widehat{Z}_B&\widehat{Z}_A\cdot\widehat{Z}_B\\
+\end{matrix}\right]
+=
+\left[\begin{matrix}
+1&0&0\\
+0&1&0\\
+0&0&1\\
+\end{matrix}\right]
+=I_3
+=^A_BR\,^A_BR^{-1}</script><p>得出结果：</p>
+<script type="math/tex; mode=display">
+^A_BR^T=^A_BR^{-1}</script><h3 id="2-3-旋转矩阵-DOF：自由度"><a href="#2-3-旋转矩阵-DOF：自由度" class="headerlink" title="2.3 旋转矩阵 DOF：自由度"></a>2.3 旋转矩阵 DOF：自由度</h3><p>DOF(Degree Of Freedom)</p>
+<p>一个旋转矩阵虽然有9个数字，但是每一列都为单位矩阵（即每一列平方和开根号为1），且每一列向量两两垂直，所有其实旋转矩阵只有3个DOF。</p>
+<h2 id="3-旋转矩阵的用法"><a href="#3-旋转矩阵的用法" class="headerlink" title="3.旋转矩阵的用法"></a>3.旋转矩阵的用法</h2><p>1.描述一个Frame相对于两一个Frame的姿态</p>
+<p>2.将一个Point由相对于A的姿态表示转换到相对于B的姿态表示</p>
+<script type="math/tex; mode=display">
+^BR=^B_AR\,^AR</script><p>3.将Point在同一个Frame下进行转动</p>
+<script type="math/tex; mode=display">
+^BR^`=R(\theta)^BR</script><h2 id="4-旋转矩阵按照三个角度转动的两种不同方式"><a href="#4-旋转矩阵按照三个角度转动的两种不同方式" class="headerlink" title="4.旋转矩阵按照三个角度转动的两种不同方式"></a>4.旋转矩阵按照三个角度转动的两种不同方式</h2><p>1.Fixed Angles：按照固定不动的转轴旋转</p>
+<p>2.Euler Angles：按照Frame转动后当下的转轴进行旋转</p>
+<h2 id="5-Fixed-Angles"><a href="#5-Fixed-Angles" class="headerlink" title="5.Fixed Angles:"></a>5.Fixed Angles:</h2><h3 id="5-1绕X轴旋转"><a href="#5-1绕X轴旋转" class="headerlink" title="5.1绕X轴旋转"></a>5.1绕X轴旋转</h3><script type="math/tex; mode=display">
+R_{\widehat{X}}(\theta)=
+\left[
+\begin{matrix}
+1&0&0\\
+0&\cos\theta&-\sin\theta\\
+0&\sin\theta&\cos\theta\\
+\end{matrix}
+\right]</script><h3 id="5-2绕Y轴旋转"><a href="#5-2绕Y轴旋转" class="headerlink" title="5.2绕Y轴旋转"></a>5.2绕Y轴旋转</h3><script type="math/tex; mode=display">
+R_{\widehat{Y}}(\theta)=
+\left[
+\begin{matrix}
+\cos\theta&0&\sin\theta\\
+0&1&0\\
+-\sin\theta&0&\cos\theta\\
+\end{matrix}
+\right]</script><h3 id="5-3绕Z轴旋转"><a href="#5-3绕Z轴旋转" class="headerlink" title="5.3绕Z轴旋转"></a>5.3绕Z轴旋转</h3><script type="math/tex; mode=display">
+R_{\widehat{Z}}(\theta)=
+\left[
+\begin{matrix}
+\cos\theta&-\sin\theta&0\\
+\sin\theta&cos\theta&0\\
+0&0&1\\
+\end{matrix}
+\right]</script><h3 id="5-4按照XYZ顺序旋转"><a href="#5-4按照XYZ顺序旋转" class="headerlink" title="5.4按照XYZ顺序旋转"></a>5.4按照XYZ顺序旋转</h3><script type="math/tex; mode=display">
+^A_BR_{XYZ}(\gamma,\beta,\alpha)=R_Z(\alpha)R_Y(\beta)R_X(\gamma)</script><p>可以看到旋转矩阵的顺序是Z Y X ，由（3.3）所得<script type="math/tex">^AR^`=^A_BR\,^BR,配合上述公式，可以得到，^AR^`=\,^A_BR_{XYZ}(\gamma,\beta,\alpha)\cdot^BR=R_Z(\alpha)R_Y(\beta)R_X(\gamma)\cdot^BR</script></p>
+<p>这样的话就保证是按照XYZ的顺序进行的旋转</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/04/01/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80/">http://example.com/2023/04/01/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80/">旋转矩阵(一)</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text">旋转矩阵(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">1.定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">2.特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-B%E5%AF%B9A%E7%9A%84%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E7%AD%89%E4%BA%8EA%E5%AF%B9B%E7%9A%84%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1  B对A的旋转矩阵等于A对B的旋转矩阵的转置矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%B8%80%E4%B8%AA%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%85%B6%E5%8F%8D%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%90%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 一个旋转矩阵的转置矩阵与其反矩阵相同</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1%E7%BB%93%E8%AE%BA"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">2.2.1结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2%E8%AE%BA%E8%AF%81"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.2.2论证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-DOF%EF%BC%9A%E8%87%AA%E7%94%B1%E5%BA%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 旋转矩阵 DOF：自由度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">3.旋转矩阵的用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E6%8C%89%E7%85%A7%E4%B8%89%E4%B8%AA%E8%A7%92%E5%BA%A6%E8%BD%AC%E5%8A%A8%E7%9A%84%E4%B8%A4%E7%A7%8D%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">4.旋转矩阵按照三个角度转动的两种不同方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Fixed-Angles"><span class="toc-number">1.5.</span> <span class="toc-text">5.Fixed Angles:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E7%BB%95X%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1绕X轴旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E7%BB%95Y%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2绕Y轴旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E7%BB%95Z%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3绕Z轴旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E6%8C%89%E7%85%A7XYZ%E9%A1%BA%E5%BA%8F%E6%97%8B%E8%BD%AC"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4按照XYZ顺序旋转</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5-%E4%B8%80/" title="旋转矩阵(一)">旋转矩阵(一)</a><time datetime="2023-04-01T06:33:10.000Z" title="Created 2023-04-01 14:33:10">2023-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
