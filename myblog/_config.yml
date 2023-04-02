@@ -102,6 +102,10 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: https://github.com/weweweha/weweweha.github.io.git
-  branch: master
+    type: cos
+    region: ap-shanghai
+    secretId: AKIDf6IE4oTuABxTjkY7eggT0KYYHua3GC2h
+    secretKey: jMlvHPIBuX6ShqmUxBF3h5OYT8XjhQu8
+    bucket: weweweha-1302007889
+    #cosAppid:  1302007889
+    #remotePath: <您要部署的目录,默认为根目录,默认无需设置>
